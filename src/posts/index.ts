@@ -3,7 +3,6 @@ import {PostService} from '../common/services/post-service';
 
 @inject(PostService)
 export class Index {
-  message: string;
   postService;
   posts;
 
