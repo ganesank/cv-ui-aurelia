@@ -1,14 +1,13 @@
 <template>
-  <div repeat.for="post of posts">
-    <div class="blog-post">
-      <h2 class="blog-post-title">${ post.title }</h2>
-      <p class="blog-post-meta">${ post.createdAt } by <a href="#">${ post.author }</a></p>
+  <require from="../resources/elements/blog-post"></require>
 
-      <a href="" repeat.for="tag of post.tags">
-        <span class="badge badge-pill badge-info">${ tag }</span> </a>
+  <div class="alert alert-danger" if.bind="error"> <!--Error is only displayed if it exists -->
+    ${ error }
+  </div>
 
-      <p>${ post.body }</p>
-    </div><!-- /.blog-post -->
+  <div repeat.for="post of posts" if.bind="!error">
+    <blog-post post.bind="post"></blog-post>
+
     <a route-href="route: post-view; params.bind: { slug: post.slug }">View Post &raquo;</a>
     <hr>
   </div>
