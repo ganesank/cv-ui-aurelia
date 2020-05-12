@@ -3,12 +3,15 @@ import {AuthService} from './auth-service';
 
 @inject(AuthService)
 export class PostService {
+  authService;
+  delay: number;
+  posts;
 
 	constructor(AuthService) {
 		this.authService = AuthService;
 		// Fake a server response delay
 		this.delay = 100;
-		// Seed post data if it doesn't exist
+		// Seed post data if it doesn't exist why isnt this working?
 		if (!this.posts) {
 			this.posts = [
 				{

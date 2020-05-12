@@ -1,4 +1,7 @@
 export class AuthService {
+  delay: number;
+  currentUser: string;
+  users: string[];
 
 	constructor() {
 		this.delay = 100;
