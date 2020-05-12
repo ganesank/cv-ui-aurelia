@@ -3,12 +3,15 @@ import {AuthService} from './auth-service';
 
 @inject(AuthService)
 export class PostService {
+  authService;
+  delay: number;
+  posts;
 
 	constructor(AuthService) {
 		this.authService = AuthService;
 		// Fake a server response delay
 		this.delay = 100;
-		// Seed post data if it doesn't exist
+		// Seed post data if it doesn't exist why isnt this working?
 		if (!this.posts) {
 			this.posts = [
 				{
@@ -56,7 +59,7 @@ export class PostService {
 			  	previews.sort((a,b) => b.createdAt - a.createdAt);
 			  	resolve({ posts: previews });
 		  	} else {
-		  		resolve({ error: 'There was an error retrieving the posts.' });
+		  		reject(new Error('There was an error retrieving the posts.'));
 		  	}
 		  }, this.delay);
 		});		
@@ -74,7 +77,7 @@ export class PostService {
 		  	if (archives) {	
 			  	resolve({ archives: archives.filter((v, i, a) => a.indexOf(v) === i) });		  		
 		  	} else {
-		  		resolve({ error: 'There was an error retrieving the archives.' });
+		  		reject(new Error('There was an error retrieving the archives.') );
 		  	}
 		  }, this.delay);
 		});		
@@ -90,7 +93,7 @@ export class PostService {
 		  	if (tags) {	
 			  	resolve({ tags: tags.filter((v, i, a) => a.indexOf(v) === i) });		  		
 		  	} else {
-		  		resolve({ error: 'There was an error retrieving the tags.' });
+		  		reject(new Error('There was an error retrieving the tags.') );
 		  	}
 		  }, this.delay);
 		});		
@@ -112,7 +115,7 @@ export class PostService {
 					});
 					resolve({ slug });
 				} else {
-					resolve({ error: 'You must be logged in to create a post.' });
+					reject(new Error('You must be logged in to create a post.') );
 				}
 		  }, this.delay);
 		});	
@@ -125,7 +128,7 @@ export class PostService {
 		  	if (post) {
 			  	resolve({ post });
 		  	} else {
-		  		resolve( { error: 'Post not found.' } );
+		  		reject( new Error('Post not found.') );
 		  	}
 		  }, this.delay);
 		});	
@@ -135,7 +138,7 @@ export class PostService {
 		return new Promise((resolve, reject) => {
 		  setTimeout(() => {
 		  	if (!this.posts) {
-		  		resolve({ error: 'Error finding posts.' });
+		  		reject(new Error('Error finding posts.') );
 		  	} else {
 			  	resolve({ posts: this.posts.filter(post => post.tags.includes(tag)).sort((a,b) => b.createdAt - a.createdAt) });
 		  	}
@@ -148,7 +151,7 @@ export class PostService {
 		return new Promise((resolve, reject) => {
 		  setTimeout(() => {
 		  	if (!this.posts) {
-		  		resolve({ error: 'Error finding posts.' });
+		  		reject(new Error('Error finding posts.') );
 		  	} else {
 			  	resolve({ posts: this.posts.filter(post => {
 			  		return archive === `${months[post.createdAt.getMonth()]} ${post.createdAt.getFullYear()}`;
@@ -175,7 +178,7 @@ export class PostService {
 		  		return x.slug === post.slug && x.author === this.authService.currentUser;
 		  	})
 		  	if (!toUpdate) {
-		  		resolve({ error: 'There was an error updating the post.' });	
+		  		reject(new Error ('There was an error updating the post.') );
 		  	} else {
 		  		toUpdate = post;
 		  		resolve({ slug: toUpdate.slug });
