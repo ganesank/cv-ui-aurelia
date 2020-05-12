@@ -5,19 +5,18 @@ import {PostService} from '../common/services/post-service';
 export class Index {
   postService;
   posts;
+  error;
 
   constructor(PostService) {
     this.postService = PostService;
   }
 
   attached() {
+    this.error = ''; //resets Error when component is called multiple times
     this.postService.allPostPreviews().then(data => {
-      if (data.error){
-        //Handle the errors
-      } else {
-        this.posts = data.posts;
-        console.log(this.posts);
-      }
-    });
+      this.posts = data.posts;
+    }).catch(error => {
+      this.error = error.message;
+    })
   }
 }
