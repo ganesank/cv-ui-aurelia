@@ -1,7 +1,9 @@
 <template>
+  <require from="../value-converters/date-format"> </require>
   <div class="blog-post">
     <h2 class="blog-post-title">${ post.title }</h2>
-    <p class="blog-post-meta">${ post.createdAt } by <a href="#">${ post.author }</a></p>
+    <p class="blog-post-meta">${ post.createdAt | dateFormat} by <a href="#">${ post.author }</a></p>
+    <!-- |<-Pipe      dateFormat<-Konvention Value Converter so anzusprechen -->
 
     <a href="" repeat.for="tag of post.tags">
       <span class="badge badge-pill badge-info">${ tag }</span> </a>
