@@ -5,7 +5,7 @@
     <p class="blog-post-meta">${ post.createdAt | dateFormat} by <a href="#">${ post.author }</a></p>
     <!-- |<-Pipe      dateFormat<-Konvention Value Converter so anzusprechen -->
 
-    <a href="" repeat.for="tag of post.tags">
+    <a route-href="route: tag-view; params.bind: { tag }" repeat.for="tag of post.tags">
       <span class="badge badge-pill badge-info">${ tag }</span> </a>
 
     <p>${ post.body }</p>
