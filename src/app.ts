@@ -1,4 +1,5 @@
 import {Router, RouterConfiguration} from 'aurelia-router';
+import {EventAggregator} from 'aurelia-event-aggregator';
 import {inject, PLATFORM} from 'aurelia-framework';
 import {PostService} from './common/services/post-service';
 import {AuthService} from './common/services/auth-service';
@@ -8,9 +9,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/styles/blog.css';
 
-@inject(PostService, AuthService)
+@inject(EventAggregator, PostService, AuthService)
 export class App {
-  public message: string = 'Hello World!';
+  ea;
   router: Router;
   postService;
   tags;
@@ -19,14 +20,19 @@ export class App {
 
   authService;
   currentUser: string;
+  subscription;
 
-  constructor(PostService, AuthService){
+  constructor(EventAggregator, PostService, AuthService){
+    this.ea = EventAggregator;
     this.postService = PostService;
     this.authService = AuthService;
   }
 
   attached() {
     this.currentUser = this.authService.currentUser;
+    this.subscription = this.ea.subscribe('user', user => {
+      this.currentUser = this.authService.currentUser;
+    })
 
     this.postService.allTags().then(data => {
       this.tags = data.tags;
@@ -39,9 +45,12 @@ export class App {
     }).catch(error => {
       this.error = error.message;
     })
+
+    console.log(this.router.currentInstruction.params);
   }
 
   configureRouter(config: RouterConfiguration, router){
+    this.router = router;
     config.title = 'Hannes\' Blog';
     config.map([
       { route: '', name: 'home', moduleId: PLATFORM.moduleName('posts/index'), title: 'All Posts'},
@@ -49,8 +58,19 @@ export class App {
       { route: 'post/:slug', name: 'post-view', moduleId: PLATFORM.moduleName('posts/view'), title: 'Post'},
       { route: 'tag/:tag', name: 'tag-view', moduleId: PLATFORM.moduleName('posts/tag-view'), title: 'Posts by tag'},
       { route: 'archive/:archive', name: 'archive-view', moduleId: PLATFORM.moduleName('posts/archive-view'), title: 'Posts by archive'}
-
     ]);
+  }
+
+  detached() {
+    this.subscription.dispose();
+  }
+
+  logout() {
+    this.authService.logout().then(data => {
+      this.ea.publish('user', null);
+    }).catch(error => {
+      this.error = error.message;
+    })
   }
 
 }
