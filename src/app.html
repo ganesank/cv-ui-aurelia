@@ -6,15 +6,16 @@
           <a class="text-muted" href="#">Subscribe</a>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="#">Large</a>
+          <a class="blog-header-logo text-dark" href="#">Aurelia Blog</a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
           <a class="text-muted" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
           </a>
-          <a class="btn btn-sm btn-outline-secondary" route-href="login"if.bind="!currentUser">Login</a>
-          <a class="btn btn-sm btn-outline-secondary" route-href="login"if.bind="!currentUser">Sign up</a>
-          <a class="btn btn-sm btn-outline-secondary" click.delegate="logout()" if.bind="currentUser">Logout</a>
+
+          <a class="btn btn-sm btn-outline-secondary ml-1" route-href="login"if.bind="!currentUser">Login</a>
+          <a class="btn btn-sm btn-outline-secondary ml-1" route-href="login"if.bind="!currentUser">Sign up</a>
+          <a class="btn btn-sm btn-outline-secondary ml-1" click.delegate="logout()" if.bind="currentUser">Logout</a>
         </div>
       </div>
     </header>
@@ -22,9 +23,9 @@
     <!--TODO move tags to categories -->
     <div class="nav-scroller py-1 mb-2">
       <nav class="nav d-flex justify-content-around">
-        <a class="p-2 ${ router.currentInstruction.params.tag === 'aurelia'  ? 'text-dark bg-light' : 'text-muted'}" href="#">Aurelia</a>
-        <a class="p-2 ${ router.currentInstruction.params.tag === 'typescript' ? 'text-dark bg-light' : 'text-muted'}" href="#">TypeScript</a>
-        <a class="p-2 ${ router.currentInstruction.params.tag === 'learning' ? 'text-dark bg-light' : 'text-muted'}" href="#">Learning</a>
+        <a class="p-2 ${ router.currentInstruction.params.tag === 'aurelia'  ? 'text-dark bg-light' : 'text-muted'}" route-href="route: tag-view; params.bind: { tag: 'aurelia' } ">Aurelia</a>
+        <a class="p-2 ${ router.currentInstruction.params.tag === 'typescript' ? 'text-dark bg-light' : 'text-muted'}" route-href="route: tag-view; params.bind: { tag: 'typescript' } ">TypeScript</a>
+        <a class="p-2 ${ router.currentInstruction.params.tag === 'learning' ? 'text-dark bg-light' : 'text-muted'}" route-href="route: tag-view; params.bind: { tag: 'learning' } ">Learning</a>
       </nav>
     </div>
 
