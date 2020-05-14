@@ -1,3 +1,4 @@
 <template>
-  <compose view="./post-list.html"> </compose>
+  <require from="../resources/elements/post-list.html"></require>
+  <post-list error.bind="error" posts.bind="posts"></post-list>
 </template>
