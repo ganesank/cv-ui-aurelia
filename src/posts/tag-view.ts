@@ -4,7 +4,8 @@ import {PostService} from '../common/services/post-service';
 @inject (PostService)
 export class TagView {
   postService;
-  tag;
+  tag: string;
+  title: string;
   posts;
   error;
 
@@ -14,6 +15,7 @@ export class TagView {
 
   activate(params) {
     this.tag = params.tag;
+    this.title = `Viewing posts tagged with `;
     this.postService.postsByTag(this.tag).then(data => {
       this.posts = data.posts;
     }).catch(error => {

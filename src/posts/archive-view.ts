@@ -4,7 +4,8 @@ import {PostService} from '../common/services/post-service';
 @inject (PostService)
 export class ArchiveView {
   postService;
-  archive;
+  archive: string;
+  title: string;
   posts;
   error;
 
@@ -14,6 +15,7 @@ export class ArchiveView {
 
   activate(params) {
     this.archive = params.archive;
+    this.title = `Viewing posts from ${ this.archive }`;
     this.postService.postsByArchive(this.archive).then(data => {
       this.posts = data.posts;
     }).catch(error => {
