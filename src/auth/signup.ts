@@ -16,9 +16,6 @@ export class Signup {
     this.ea = EventAggregator;
     this.router = Router;
     this.authService = AuthService;
-  }
-
-  activate() {
     this.error = null;
   }
 
