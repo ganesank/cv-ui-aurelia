@@ -4,10 +4,11 @@ import {AuthService} from '../common/services/auth-service';
 import {inject} from 'aurelia-framework';
 
 @inject(EventAggregator, Router, AuthService)
-export class Login {
+export class Signup {
   ea;
   router;
   authService;
+
   name: string;
   error: string;
 
@@ -21,9 +22,10 @@ export class Login {
     this.error = null;
   }
 
-  login() {
+  signup() {
     this.error = null;
-    this.authService.login(this.name).then(data => {
+    console.log(this.name);
+    this.authService.signup(this.name).then(data => {
       this.ea.publish('user', data.name);
       this.router.navigateToRoute('home');
     }).catch(error => {
