@@ -21,6 +21,7 @@ export class App {
   authService;
   currentUser: string;
   subscription;
+  postSubscription;
 
   constructor(EventAggregator, PostService, AuthService){
     this.ea = EventAggregator;
@@ -34,6 +35,13 @@ export class App {
       this.currentUser = this.authService.currentUser;
     })
 
+    this.updateSidebar();
+    this.postSubscription = this.ea.subscribe('post-updated', updatedAt => {
+      this.updateSidebar();
+    })
+  }
+
+  updateSidebar() {
     this.postService.allTags().then(data => {
       this.tags = data.tags;
     }).catch(error => {
@@ -45,8 +53,6 @@ export class App {
     }).catch(error => {
       this.error = error.message;
     })
-
-    console.log(this.router.currentInstruction.params);
   }
 
   configureRouter(config: RouterConfiguration, router){
@@ -65,6 +71,7 @@ export class App {
 
   detached() {
     this.subscription.dispose();
+    this.postSubscription.dispose();
   }
 
   logout() {
