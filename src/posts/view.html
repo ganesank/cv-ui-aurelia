@@ -6,4 +6,10 @@
   </div>
 
   <blog-post post.bind="post" if.bind="!error"></blog-post><!--If no error exists the post is displayed -->
+
+  <a class="btn btn-sm btn-outline-primary"
+     route-href="route: post-edit; params.bind: { slug: post.slug }"
+     if.bind="authService.currentUser === post.author" >
+      Edit Post
+  </a>
 </template>

@@ -64,6 +64,7 @@ export class App {
       { route: 'signup', name: 'signup', moduleId: PLATFORM.moduleName('auth/signup'), title: 'Sign Up'},
       { route: 'create-post', name: 'create-post', moduleId: PLATFORM.moduleName('posts/create'), title: 'Create new Post'},
       { route: 'post/:slug', name: 'post-view', moduleId: PLATFORM.moduleName('posts/view'), title: 'Post'},
+      { route: 'post/:slug/edit', name: 'post-edit', moduleId: PLATFORM.moduleName('posts/edit'), title: 'Edit Post'},
       { route: 'tag/:tag', name: 'tag-view', moduleId: PLATFORM.moduleName('posts/tag-view'), title: 'Posts by Tag'},
       { route: 'archive/:archive', name: 'archive-view', moduleId: PLATFORM.moduleName('posts/archive-view'), title: 'Posts by Archive'}
     ]);

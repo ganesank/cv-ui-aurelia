@@ -4,7 +4,7 @@ import {PostService} from "../common/services/post-service";
 import {Router} from "aurelia-router";
 
 @inject(EventAggregator, PostService, Router)
-export class Create {
+export class Edit {
   ea;
   postService;
   router;
@@ -20,18 +20,18 @@ export class Create {
     this.router =Router;
   }
 
-  attached() {
-    this.post = {
-      title: '',
-      body: '',
-      tags: []
-    };
+  activate(params) {
+    this.postService.find(params.slug).then(data => {
+      this.post = data.post;
+    }).catch(error => {
+      console.log(error);
+    })
 
-    this.title="Create Post"
+    this.title="Edit Post"
   }
 
-  createPost() {
-    this.postService.create(this.post).then(data => {
+  editPost() {
+    this.postService.update(this.post).then(data => {
       this.ea.publish('post-updated', Date());
       this.router.navigateToRoute('post-view', {slug: data.slug});
     }).catch(error => {
