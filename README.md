@@ -1,33 +1,52 @@
-# `blog-start`
+# [ aurelia Cirrus CV Page ](https://github.com/ganesank/cv-ui-aurelia)
 
-This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
+aurelia JS & Cirrus CSS CV Page is kind of a Single Page Application which built over [RiotJS](https://aurelia.io/), [Cirrus CSS](https://spiderpig86.github.io/Cirrus//) and [Netlify Functions](https://www.netlify.com/).
+This code can Be used as boilerplate for Anguar with Material Design Development and as ready use Web based CV/ Resume Page.
 
-For more information, go to https://aurelia.io/docs/cli/webpack
+Using the Project is pretty simple but requires moderate knowledge of Javascript,
 
-## Run dev app
+## Getting Started
 
-Run `npm start`, then open `http://localhost:8080`
+- Install Nodejs from [Nodejs Official Page](https://nodejs.org/en/)
+- Open your terminal
+- Navigate to the project
+- Run `npm install` or `yarn install` if you use [Yarn](https://yarnpkg.com/en/)
+- Run `yarn au run --watch` to start a local development server
+- Navigate to `http://localhost:8080` or - A new tab will be opened in your browser
 
-You can change the standard webpack configurations from CLI easily with something like this: `npm start -- --open --port 8888`. However, it is better to change the respective npm scripts or `webpack.config.js` with these options, as per your need.
+You can also run additional npm tasks such as
 
-To enable Webpack Bundle Analyzer, do `npm run analyze` (production build).
+- `au build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build
+- `au karma` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-To enable hot module reload, do `npm start -- --hmr`.
+## Prerequisites
 
-To change dev server port, do `npm start -- --port 8888`.
+You must have Node.js and npm installed on your machine. This project was built against the following versions:
 
-To change dev server host, do `npm start -- --host 127.0.0.1`
+- Node v12.6.0
+- npm v6.9.0
 
-**PS:** You could mix all the flags as well, `npm start -- --host 127.0.0.1 --port 7070 --open --hmr`
+# Features!
 
-For long time aurelia-cli user, you can still use `au run` with those arguments like `au run --env prod --open --hmr`. But `au run` now simply executes `npm start` command.
+- SPA based on Counter Component Developemnt
+-
 
-## Build for production
+## Tech
 
-Run `npm run build`, or the old way `au build --env prod`.
+This Application uses a number of open source projects to work properly:
 
-## Unit tests
+- [aurelia](https://aurelia.io/) - HTML enhanced for web apps!
+- [Cirrus CSS ](https://spiderpig86.github.io/Cirrus/) - great UI boilerplate for modern web apps
+- [nodejs](https://nodejs.org/) - For Development Enviromnent and Netlify Functions Integrations
+- [Netlify](https://www.netlify.com/) - Cloud Computing Hosting, CI Pipeline, AWS's serverless Lambda functions
+- [webpack](https://webpack.js.org/) - Module Bundler
 
-Run `au test` (or `au jest`).
+## Todo
 
-To run in watch mode, `au test --watch` or `au jest --watch`.
+Application roadmap on enhancement
+
+-
+
+## Demo
+
+[Running App](https://ganesan-cv-ui-aurelia.netlify.app/)

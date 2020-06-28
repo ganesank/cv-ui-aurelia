@@ -1,0 +1,228 @@
+<template>
+  <require from="../../shared/buttons/favorite-button"></require>
+
+  <div class="section" class.bclass.bind="article.type" id.bind="article.tag">
+
+    <div if.bind="article.type === 'hero'">
+      <div class="placeholder">
+        <div class="row">
+          <div class="col-2 "> </div>
+          <div class="col-8 ">
+            <h6 class="placeholder-title">${article.title}</h6>
+            <div class="placeholder-subtitle">${article.subtitle}</div>
+            <div class="placeholder-commands u-center" innerhtml.bind="article.desc">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div if.bind="article.type !== 'hero' &&  article.tag !== 'social'">
+      <div id="grids " class="resume-group">
+        <div class="row">
+          <div class="col-3 u-center">
+            <div class="resume-heading">
+              <p class="title">${article.title}</p>
+              <p class="subtitle">${article.subtitle}</p>
+            </div>
+          </div>
+          <div class="col-9 ">
+            <div if.bind="article.type === 'links' ">
+              <div class="row">
+                <div class="col-3" repeat.for="tag of article.content">
+                  <a href="${tag.link}" target="_blank" class="tile doc-tile">
+                    <div class="tile__container">
+                      <h4 class="tile__title font-alt">
+                        <i class="fa-wrapper fas ${tag.icon} "></i>
+                        ${tag.title}</h4>
+                      <p class="tile__subtitle lead">${tag.subtitle}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+
+            <div if.bind="article.type === 'expertise'">
+              <div repeat.for="tag of article.content">
+                <div class="card">
+                  <div class="card-head">
+                    <p class="card-head-title">${tag.title}</p>
+                  </div>
+                  <div class="content">
+                    <ul class="tag-list">
+                      <li repeat.for="tagc of tag.content" class="">${tagc.title}<br />
+                        <div class="tags tag-container tags-container">
+                          <span repeat.for="tagcs of tagc.content"
+                            class="tag tag--info text-light">${tagcs.title}</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div if.bind="article.type === 'progress'">
+              <div>
+                <div class="row">
+                  <div class="col-4" repeat.for="tag of article.content">
+                    <div>
+                      ${tag.title}
+                      <div class="cssProgress">
+                        <div class="progress4">
+                          <div class="cssProgress-bar" data-percent=${tag.percentage}
+                            style="width: ${tag.percentage}px "></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div if.bind="article.type === 'experience'">
+              <div class="row" repeat.for="tag of article.content">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-head">
+                      <div class="tile">
+                        <div class="tile__container">
+                          <p class="tile__title">${tag.title}</p>
+                          <p class="tile__subtitle">${tag.company}</p>
+                        </div>
+                        <div class="tile__container">
+                          ${tag.startdate} ${tag.enddate}
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="card-footer level content">
+
+                      ${tag.startdate} ${tag.enddate}
+                    </div>
+                    <div class="content">
+                      <span class="tile__subtitle">${tag.company}</span>
+
+                      <div innerhtml.bind="tag.desc"></div>
+                    </div>
+
+                    <div class="action-bar u-center">
+                      <button class="btn">Responsibility</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div if.bind="article.type === 'education'">
+              <div class="row" repeat.for="tag of article.content">
+                <div class="col-12">
+                  <div class="tile">
+                    <div class="tile__icon">
+
+                    </div>
+                    <div class="tile__container">
+                      <p class="tile__title m-0">${tag.title}</p>
+                      <p class="tile__subtitle m-0">${tag.institute}</p>
+                      <span class="info"> ${tag.startdate} ${tag.enddate}</span>
+
+                    </div>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+
+            <div if.bind="article.type === 'projects'">
+              <div class="row" repeat.for="tag of article.content">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-head">
+                      <div class="tile">
+                        <div class="tile__container">
+                          <p class="tile__title">${tag.title}</p>
+                          <p class="tile__subtitle">${tag.company}</p>
+                        </div>
+                        <div class="tile__container">
+                          ${tag.startdate} ${tag.enddate}
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="card-footer level content">
+
+
+                    </div>
+                    <div class="content">
+                      <p class="tile__subtitle"></p>
+                      <div innerhtml.bind="tag.desc"></div>
+                    </div>
+
+                    <div class="action-bar u-center">
+                      <button class="btn">Technologies</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div if.bind="article.type === 'awards'">
+              <div class="row" repeat.for="tag of article.content">
+                <div class="col-12">
+                  <div class="tile">
+                    <div class="tile__icon">
+
+                    </div>
+                    <div class="tile__container">
+                      <p class="tile__title m-0">${tag.title}</p>
+                      <p class="tile__subtitle m-0">${tag.institute}</p>
+                      <span class="info"> ${tag.startdate} ${tag.enddate}</span>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" style="position: relative;">
+                  <div class="divider" data-content=""></div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+            <div if.bind="article.tag === 'social'">
+
+               <footer>
+    <h6 class="white uppercase"> ${article.title}</h6>
+    <div class="content">
+        <div class="divider"></div>
+        <!--<li class="no-bullets footer-list-title">Docs</li>-->
+        <div class="row u-center">
+            <div class="col" repeat.for="tag of article.content">
+                <a href="${tag.link}">
+                    <span class="icon">
+                        <i class.bind="tag.icon" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+             
+            </div>
+ 
+
+  </div>
+</template>

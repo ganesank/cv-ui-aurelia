@@ -1,17 +1,9 @@
 {
-  "name": "blog-start",
+  "name": "aurelia-realworld-example-app",
   "type": "project:application",
-  "paths": {
-    "root": "src",
-    "resources": "resources",
-    "elements": "resources/elements",
-    "attributes": "resources/attributes",
-    "valueConverters": "resources/value-converters",
-    "bindingBehaviors": "resources/binding-behaviors"
-  },
-  "transpiler": {
-    "id": "typescript",
-    "fileExtension": ".ts"
+  "bundler": {
+    "id": "webpack",
+    "displayName": "Webpack"
   },
   "build": {
     "options": {
@@ -21,11 +13,61 @@
     }
   },
   "platform": {
+    "id": "web",
+    "displayName": "Web",
+    "port": 8080,
     "hmr": false,
     "open": false,
-    "port": 8080,
-    "host": "localhost",
     "output": "dist"
   },
-  "packageManager": "npm"
+  "loader": {
+    "id": "none",
+    "displayName": "None"
+  },
+  "transpiler": {
+    "id": "babel",
+    "displayName": "Babel",
+    "fileExtension": ".js",
+    "options": {
+      "plugins": [
+        "transform-es2015-modules-amd"
+      ]
+    }
+  },
+  "markupProcessor": {
+    "id": "minimum",
+    "displayName": "Minimal Minification",
+    "fileExtension": ".html"
+  },
+  "cssProcessor": {
+    "id": "none",
+    "displayName": "None",
+    "fileExtension": ".css"
+  },
+  "editor": {
+    "id": "webstorm",
+    "displayName": "WebStorm"
+  },
+  "unitTestRunner": [
+    {
+      "id": "karma",
+      "displayName": "Karma"
+    }
+  ],
+  "integrationTestRunner": {
+    "id": "protractor",
+    "displayName": "Protractor"
+  },
+  "paths": {
+    "root": "src",
+    "resources": "resources",
+    "elements": "resources/elements",
+    "attributes": "resources/attributes",
+    "valueConverters": "resources/value-converters",
+    "bindingBehaviors": "resources/binding-behaviors"
+  },
+  "testFramework": {
+    "id": "jasmine",
+    "displayName": "Jasmine"
+  }
 }
